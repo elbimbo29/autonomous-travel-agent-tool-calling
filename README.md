@@ -50,17 +50,39 @@ Unlike static text-prompt wrappers, this application demonstrates how Large Lang
 * **Real-Time Tool Logs:** A custom Streamlit interface featuring expandable execution logs that expose intermediate function names, arguments passed, execution timing, and raw API responses for full visibility.
 
 ---
-
 ## 🚀 Quick Start Guide
 
-Follow these steps to set up and run the Autonomous AI Travel Agent locally on your machine.
-
 ### 1. Prerequisites
-Ensure you have the following installed:
 * **Python 3.10+** — [Download Python](https://www.python.org/downloads/)
 * **Git** — [Download Git](https://git-scm.com/downloads)
 * **OpenAI API Key** — Obtain an API key from your [OpenAI Platform Account](https://platform.openai.com/api-keys)
 
+---
+
+### 2. Clone the Repository
+* **Clone the repo** — Run `git clone https://github.com/YOUR_GITHUB_USERNAME/autonomous-travel-agent-tool-calling.git`
+* **Navigate into directory** — Run `cd autonomous-travel-agent-tool-calling`
+
+---
+
+### 3. Set Up Virtual Environment
+* **Windows (PowerShell)** — Run `python -m venv venv` and `.\venv\Scripts\activate`
+* **macOS / Linux** — Run `python3 -m venv venv` and `source venv/bin/activate`
+
+---
+
+### 4. Install Dependencies
+* **Install packages** — Run `pip install -r requirements.txt`
+
+---
+
+### 5. Configure Environment Variables
+* **Create `.env` file** — Add `OPENAI_API_KEY=your_actual_key_here` to the file
+
+---
+
+### 6. Launch Application
+* **Start Streamlit** — Run `streamlit run app.py`
 ---
 
 ### 🧩 Component Breakdown
