@@ -85,8 +85,13 @@ Unlike static text-prompt wrappers, this application demonstrates how Large Lang
 * **Start Streamlit** — Run `streamlit run app.py`
 ---
 ## 📱 Application Demo
-![Autonomous AI Travel Agent Chat Interface](assets/demo-screenshot.png)
+<div align="center">
+  <img src="assets/demo-screenshot.png" alt="Autonomous AI Travel Agent Chat Interface" width="100%" style="border-radius: 8px;">
+  <p><em>Streamlit chat interface showing dynamic tool calling, weather execution, and expandable tracing payloads.</em></p>
+</div>
+
 ---
+
 ### 🧩 Component Breakdown
 
 * **User Interface (`app.py`):** Built with Streamlit, manages persistent session state for chat history and real-time execution logs.
