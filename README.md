@@ -16,17 +16,17 @@ Unlike static text-prompt wrappers, this application demonstrates how Large Lang
 
 ---
 ## 📂 Project Structure
-autonomous-travel-agent-tool-calling/
-│
-├── 📄 .env.example         # Template for environment variables (OPENAI_API_KEY)
-├── 📄 .gitignore           # Excludes virtual environments and sensitive keys
-├── 📄 README.md            # Comprehensive project documentation
-├── 📄 app.py               # Main Streamlit interface & OpenAI agent execution loop
-├── 📄 country_tool.py      # REST Countries API handler & coordinate extractor
-├── 📄 currency_tool.py     # Frankfurter Exchange Rate API integration module
-├── 📄 requirements.txt     # Python package dependencies
-├── 📄 tools.py             # Central module re-exporting local tool functions
-└── 📄 weather_tool.py      # Open-Meteo API handler for live weather data
+
+* 📁 **`autonomous-travel-agent-tool-calling/`**
+  * 📄 **`app.py`** — Main Streamlit interface & OpenAI agent execution loop
+  * 📄 **`tools.py`** — Central module re-exporting local tool functions
+  * 📄 **`country_tool.py`** — REST Countries API handler & coordinate extractor
+  * 📄 **`weather_tool.py`** — Open-Meteo API handler for live weather data
+  * 📄 **`currency_tool.py`** — Frankfurter Exchange Rate API integration module
+  * 📄 **`.env.example`** — Environment variable template (`OPENAI_API_KEY`)
+  * 📄 **`.gitignore`** — Excludes virtual environments and sensitive keys
+  * 📄 **`requirements.txt`** — Python package dependencies
+  * 📄 **`README.md`** — Comprehensive project documentation
 ---
 
 ### 🧩 Component Breakdown
