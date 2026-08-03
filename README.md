@@ -84,7 +84,9 @@ Unlike static text-prompt wrappers, this application demonstrates how Large Lang
 ### 6. Launch Application
 * **Start Streamlit** — Run `streamlit run app.py`
 ---
-
+## 📱 Application Demo
+![Autonomous AI Travel Agent Chat Interface](assets/demo-screenshot.png)
+---
 ### 🧩 Component Breakdown
 
 * **User Interface (`app.py`):** Built with Streamlit, manages persistent session state for chat history and real-time execution logs.
@@ -142,5 +144,6 @@ flowchart TD
     CurrencyTool -->|Sanitized JSON| LLM
 
     LLM -->|3. Final Answer| UI
+
 
     
