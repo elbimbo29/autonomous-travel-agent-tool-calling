@@ -15,6 +15,20 @@ An interactive, single-agent application built with **Python**, **OpenAI API (`g
 Unlike static text-prompt wrappers, this application demonstrates how Large Language Models perform **dynamic tool selection**, **parameter extraction**, and **REST API orchestration**. The agent dynamically evaluates natural language queries and determines when and how to call external web services (country metadata, live weather forecasts via coordinates, and real-time currency exchange rates) to answer complex travel queries.
 
 ---
+## 📂 Project Structure
+autonomous-travel-agent-tool-calling/
+│
+├── 📄 .env.example         # Template for environment variables (OPENAI_API_KEY)
+├── 📄 .gitignore           # Excludes virtual environments and sensitive keys
+├── 📄 README.md            # Comprehensive project documentation
+├── 📄 app.py               # Main Streamlit interface & OpenAI agent execution loop
+├── 📄 country_tool.py      # REST Countries API handler & coordinate extractor
+├── 📄 currency_tool.py     # Frankfurter Exchange Rate API integration module
+├── 📄 requirements.txt     # Python package dependencies
+├── 📄 tools.py             # Central module re-exporting local tool functions
+└── 📄 weather_tool.py      # Open-Meteo API handler for live weather data
+---
+
 ### 🧩 Component Breakdown
 
 * **User Interface (`app.py`):** Built with Streamlit, manages persistent session state for chat history and real-time execution logs.
