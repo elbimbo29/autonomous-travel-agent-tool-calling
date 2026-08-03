@@ -15,6 +15,17 @@ An interactive, single-agent application built with **Python**, **OpenAI API (`g
 Unlike static text-prompt wrappers, this application demonstrates how Large Language Models perform **dynamic tool selection**, **parameter extraction**, and **REST API orchestration**. The agent dynamically evaluates natural language queries and determines when and how to call external web services (country metadata, live weather forecasts via coordinates, and real-time currency exchange rates) to answer complex travel queries.
 
 ---
+### 🧩 Component Breakdown
+
+* **User Interface (`app.py`):** Built with Streamlit, manages persistent session state for chat history and real-time execution logs.
+* **OpenAI Agent Core:** Processes user intent against JSON schemas defined in `tools_schema`, deciding whether to reply directly or issue tool function calls.
+* **Execution Safety Layer:** Uses Python's `inspect` module to match arguments strictly against local function signatures before calling `country_tool.py`, `weather_tool.py`, or `currency_tool.py`.
+* **External REST Services:**
+  * **REST Countries API:** Geographical metadata & coordinates.
+  * **Open-Meteo API:** Live weather via latitude/longitude without API key friction.
+  * **Frankfurter API:** Real-time currency conversions.
+* **Observability & Tracing:** Displays expandable JSON UI traces showing function names, arguments, execution timing, and returned payloads.
+---
 
 ## 🏗️ System Architecture
 
@@ -61,3 +72,5 @@ flowchart TD
     CurrencyTool -->|Sanitized JSON| LLM
 
     LLM -->|3. Final Answer| UI
+
+    
