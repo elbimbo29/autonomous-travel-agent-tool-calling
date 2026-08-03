@@ -40,6 +40,40 @@ Unlike static text-prompt wrappers, this application demonstrates how Large Lang
   * **Frankfurter API:** Real-time currency conversions.
 * **Observability & Tracing:** Displays expandable JSON UI traces showing function names, arguments, execution timing, and returned payloads.
 ---
+## 💡 Core Concepts Demonstrated
+
+### 1. OpenAI Function / Tool Calling
+* **JSON Schema Mapping:** Custom Python function definitions automatically mapped to JSON schemas, allowing the LLM to inspect parameter types, required fields, and descriptions.
+* **Autonomous Intent Recognition:** The LLM independently determines whether a prompt requires static reasoning or real-time external tool execution without hardcoded `if/else` logic.
+* **Safe Argument Parsing:** Inspects and validates parameter signatures dynamically prior to local execution to prevent runtime parameter mismatches.
+
+### 2. Live REST API Orchestration
+* **Multi-Tool Integration:** Integrates 3 independent, live REST APIs:
+  * 🌐 **REST Countries API:** Fetches capitals, populations, regions, currencies, and geographic coordinates.
+  * ☀️ **Open-Meteo API:** Retrieves live weather metrics using latitude and longitude coordinates without requiring API keys.
+  * 💱 **Frankfurter Exchange API:** Performs real-time currency conversions across global currency codes.
+* **Payload Sanitization:** Prunes and formats raw API JSON payloads in Python before returning results to the LLM context window, optimizing token usage and lowering latency.
+
+### 3. Multi-Step Execution & Tool Chaining
+* Demonstrates **tool chaining**, where output parameters from one tool (e.g., retrieving latitude and longitude coordinates from a country query) are dynamically passed as input arguments into another tool (e.g., querying local weather metrics).
+
+### 4. Agent Observability & UI Tracing
+* **Real-Time Tool Logs:** A custom Streamlit interface featuring expandable execution logs that expose intermediate function names, arguments passed, execution timing, and raw API responses for full visibility.
+
+---
+
+## 🚀 Quick Start Guide
+
+Follow these steps to set up and run the Autonomous AI Travel Agent locally on your machine.
+
+### 1. Prerequisites
+Ensure you have the following installed:
+* **Python 3.10+** — [Download Python](https://www.python.org/downloads/)
+* **Git** — [Download Git](https://git-scm.com/downloads)
+* **OpenAI API Key** — Obtain an API key from your [OpenAI Platform Account](https://platform.openai.com/api-keys)
+
+---
+---
 
 ## 🏗️ System Architecture
 
