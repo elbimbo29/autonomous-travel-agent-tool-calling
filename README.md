@@ -16,6 +16,54 @@ Unlike static text-prompt wrappers, this application demonstrates how Large Lang
 
 ---
 
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+    %% Styling
+    classDef ui fill:#4F46E5,stroke:#312E81,color:#ffffff,stroke-width:2px;
+    classDef agent fill:#059669,stroke:#065F46,color:#ffffff,stroke-width:2px;
+    classDef router fill:#D97706,stroke:#92400E,color:#ffffff,stroke-width:2px;
+    classDef tool fill:#2563EB,stroke:#1E40AF,color:#ffffff,stroke-width:2px;
+    classDef api fill:#0891B2,stroke:#155E75,color:#ffffff,stroke-width:2px;
+
+    %% Nodes
+    UI[🖥️ Streamlit Web Interface<br>app.py]:::ui
+    LLM[🧠 OpenAI API Client<br>gpt-4o-mini]:::agent
+    Router[⚙️ Dynamic Tool Router<br>inspect.signature]:::router
+    
+    subgraph Local Tools
+        CountryTool[🌐 country_tool.py]:::tool
+        WeatherTool[☀️ weather_tool.py]:::tool
+        CurrencyTool[💱 currency_tool.py]:::tool
+    end
+
+    subgraph External REST APIs
+        RESTCountries[REST Countries API]:::api
+        OpenMeteo[Open-Meteo Weather API]:::api
+        Frankfurter[Frankfurter Exchange API]:::api
+    end
+
+    %% Flow Execution
+    UI -->|1. User Prompt| LLM
+    LLM -->|2. Inspects Schema & Emits Tool Call Intent| Router
+    
+    Router -->|Call get_country_info| CountryTool
+    Router -->|Call get_current_weather| WeatherTool
+    Router -->|Call convert_currency| CurrencyTool
+
+    CountryTool <-->|Fetch Metadata & Coordinates| RESTCountries
+    WeatherTool <-->|Fetch Live Weather via Lat/Long| OpenMeteo
+    CurrencyTool <-->|Fetch Live FX Rates| Frankfurter
+
+    CountryTool -->|Sanitized JSON| LLM
+    WeatherTool -->|Sanitized JSON| LLM
+    CurrencyTool -->|Sanitized JSON| LLM
+
+    LLM -->|3. Synthesized Natural Language Response| UI
+
+
+
 ## 💡 Core Concepts Demonstrated
 
 ### 1. OpenAI Function / Tool Calling
@@ -38,41 +86,27 @@ Unlike static text-prompt wrappers, this application demonstrates how Large Lang
 
 ---
 
+## 📂 Project Structure
+
+
 ## 🏗️ System Architecture
 
-```text
-                                  +-----------------------+
-                                  |   Streamlit Web UI    |
-                                  |      (app.py)         |
-                                  +-----------+-----------+
-                                              |
-                                              | 1. User Prompt
-                                              v
-                                  +-----------------------+
-                                  |    OpenAI API Client  |
-                                  |     (gpt-4o-mini)     |
-                                  +-----------+-----------+
-                                              |
-                        +---------------------+---------------------+
-                        | 2. Evaluates Tool Schemas & Emits Calls  |
-                        v                                           v
-            +-----------------------+                   +-----------------------+
-            | get_country_info()    |                   | get_current_weather() |
-            +-----------+-----------+                   +-----------+-----------+
-                        |                                           |
-                        v                                           v
-            +-----------------------+                   +-----------------------+
-            |  REST Countries API   |                   |    Open-Meteo API     |
-            +-----------------------+                   +-----------------------+
-                                              |
-                                              | 3. Tool Results Returned
-                                              v
-                                  +-----------------------+
-                                  | OpenAI Model Synthesis|
-                                  +-----------+-----------+
-                                              |
-                                              | 4. Final Formatted Answer
-                                              v
-                                  +-----------------------+
-                                  |     User Interface    |
-                                  +-----------------------+
+
+## 🚀 Quick Start Guide
+
+Follow these steps to set up and run the Autonomous AI Travel Agent locally on your machine.
+
+### 1. Prerequisites
+Ensure you have the following installed and configured before starting:
+* **Python 3.10+** — [Download Python](https://www.python.org/downloads/)
+* **Git** — [Download Git](https://git-scm.com/downloads)
+* **OpenAI API Key** — Obtain an API key from your [OpenAI Platform Account](https://platform.openai.com/api-keys)
+
+---
+
+### 2. Clone the Repository
+Clone the repository to your local machine and navigate into the project directory:
+
+```bash
+git clone [https://github.com/YOUR_GITHUB_USERNAME/autonomous-travel-agent-tool-calling.git](https://github.com/YOUR_GITHUB_USERNAME/autonomous-travel-agent-tool-calling.git)
+cd autonomous-travel-agent-tool-calling
