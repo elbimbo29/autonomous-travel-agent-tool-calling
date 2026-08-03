@@ -32,13 +32,13 @@ flowchart TD
     LLM[🧠 OpenAI API Client<br>gpt-4o-mini]:::agent
     Router[⚙️ Dynamic Tool Router<br>inspect.signature]:::router
     
-    subgraph Local Tools
+    subgraph Local_Tools [Local Tools]
         CountryTool[🌐 country_tool.py]:::tool
         WeatherTool[☀️ weather_tool.py]:::tool
         CurrencyTool[💱 currency_tool.py]:::tool
     end
 
-    subgraph External REST APIs
+    subgraph External_APIs [External REST APIs]
         RESTCountries[REST Countries API]:::api
         OpenMeteo[Open-Meteo Weather API]:::api
         Frankfurter[Frankfurter Exchange API]:::api
@@ -46,7 +46,7 @@ flowchart TD
 
     %% Flow Execution
     UI -->|1. User Prompt| LLM
-    LLM -->|2. Inspects Schema & Emits Tool Call Intent| Router
+    LLM -->|2. Inspects Schema & Emits Intent| Router
     
     Router -->|Call get_country_info| CountryTool
     Router -->|Call get_current_weather| WeatherTool
@@ -60,53 +60,4 @@ flowchart TD
     WeatherTool -->|Sanitized JSON| LLM
     CurrencyTool -->|Sanitized JSON| LLM
 
-    LLM -->|3. Synthesized Natural Language Response| UI
-
-
-
-## 💡 Core Concepts Demonstrated
-
-### 1. OpenAI Function / Tool Calling
-* **JSON Schema Mapping:** Custom Python function definitions automatically mapped to JSON schemas, allowing the LLM to inspect parameter types, required fields, and descriptions.
-* **Autonomous Intent Recognition:** The LLM independently determines whether a prompt requires static reasoning or real-time external tool execution without hardcoded `if/else` logic.
-* **Safe Argument Parsing:** Inspects and validates parameter signatures dynamically prior to local execution to prevent runtime parameter mismatches.
-
-### 2. Live REST API Orchestration
-* **Multi-Tool Integration:** Integrates 3 independent, live REST APIs:
-  * 🌐 **REST Countries API:** Fetches capitals, populations, regions, currencies, and geographic coordinates.
-  * ☀️ **Open-Meteo API:** Retrieves live weather metrics using latitude and longitude coordinates without requiring API keys.
-  * 💱 **Frankfurter Exchange API:** Performs real-time currency conversions across global currency codes.
-* **Payload Sanitization:** Prunes and formats raw API JSON payloads in Python before returning results to the LLM context window, optimizing token usage and lowering latency.
-
-### 3. Multi-Step Execution & Tool Chaining
-* Demonstrates **tool chaining**, where output parameters from one tool (e.g., retrieving latitude and longitude coordinates from a country query) are dynamically passed as input arguments into another tool (e.g., querying local weather metrics).
-
-### 4. Agent Observability & UI Tracing
-* **Real-Time Tool Logs:** A custom Streamlit interface featuring expandable execution logs that expose intermediate function names, arguments passed, execution timing, and raw API responses for full visibility.
-
----
-
-## 📂 Project Structure
-
-
-## 🏗️ System Architecture
-
-
-## 🚀 Quick Start Guide
-
-Follow these steps to set up and run the Autonomous AI Travel Agent locally on your machine.
-
-### 1. Prerequisites
-Ensure you have the following installed and configured before starting:
-* **Python 3.10+** — [Download Python](https://www.python.org/downloads/)
-* **Git** — [Download Git](https://git-scm.com/downloads)
-* **OpenAI API Key** — Obtain an API key from your [OpenAI Platform Account](https://platform.openai.com/api-keys)
-
----
-
-### 2. Clone the Repository
-Clone the repository to your local machine and navigate into the project directory:
-
-```bash
-git clone [https://github.com/YOUR_GITHUB_USERNAME/autonomous-travel-agent-tool-calling.git](https://github.com/YOUR_GITHUB_USERNAME/autonomous-travel-agent-tool-calling.git)
-cd autonomous-travel-agent-tool-calling
+    LLM -->|3. Final Answer| UI
