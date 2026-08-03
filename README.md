@@ -29,17 +29,6 @@ Unlike static text-prompt wrappers, this application demonstrates how Large Lang
   * 📄 **`README.md`** — Comprehensive project documentation
 ---
 
-### 🧩 Component Breakdown
-
-* **User Interface (`app.py`):** Built with Streamlit, manages persistent session state for chat history and real-time execution logs.
-* **OpenAI Agent Core:** Processes user intent against JSON schemas defined in `tools_schema`, deciding whether to reply directly or issue tool function calls.
-* **Execution Safety Layer:** Uses Python's `inspect` module to match arguments strictly against local function signatures before calling `country_tool.py`, `weather_tool.py`, or `currency_tool.py`.
-* **External REST Services:**
-  * **REST Countries API:** Geographical metadata & coordinates.
-  * **Open-Meteo API:** Live weather via latitude/longitude without API key friction.
-  * **Frankfurter API:** Real-time currency conversions.
-* **Observability & Tracing:** Displays expandable JSON UI traces showing function names, arguments, execution timing, and returned payloads.
----
 ## 💡 Core Concepts Demonstrated
 
 ### 1. OpenAI Function / Tool Calling
@@ -73,6 +62,17 @@ Ensure you have the following installed:
 * **OpenAI API Key** — Obtain an API key from your [OpenAI Platform Account](https://platform.openai.com/api-keys)
 
 ---
+
+### 🧩 Component Breakdown
+
+* **User Interface (`app.py`):** Built with Streamlit, manages persistent session state for chat history and real-time execution logs.
+* **OpenAI Agent Core:** Processes user intent against JSON schemas defined in `tools_schema`, deciding whether to reply directly or issue tool function calls.
+* **Execution Safety Layer:** Uses Python's `inspect` module to match arguments strictly against local function signatures before calling `country_tool.py`, `weather_tool.py`, or `currency_tool.py`.
+* **External REST Services:**
+  * **REST Countries API:** Geographical metadata & coordinates.
+  * **Open-Meteo API:** Live weather via latitude/longitude without API key friction.
+  * **Frankfurter API:** Real-time currency conversions.
+* **Observability & Tracing:** Displays expandable JSON UI traces showing function names, arguments, execution timing, and returned payloads.
 ---
 
 ## 🏗️ System Architecture
